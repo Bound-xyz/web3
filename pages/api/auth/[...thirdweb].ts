@@ -14,13 +14,13 @@ export const { ThirdwebAuthHandler, getUser } = ThirdwebAuth({
       const { data: user } = await supabase
         .from("users")
         .select("*")
-        .eq("address", address.toLowerCase())
+        .eq("wallet_address", address.toLowerCase())
         .single();
 
       if (!user) {
         const res = await supabase
           .from("users")
-          .insert({ address: address.toLowerCase() })
+          .insert({ wallet_address: address.toLowerCase() })
           .single();
 
         if (res.error) {
@@ -32,7 +32,7 @@ export const { ThirdwebAuthHandler, getUser } = ThirdwebAuth({
       const { data: user } = await supabase
         .from("users")
         .select("*")
-        .eq("address", address.toLowerCase())
+        .eq("wallet_address", address.toLowerCase())
         .single();
 
       return user;
