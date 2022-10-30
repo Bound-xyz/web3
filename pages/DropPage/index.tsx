@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { Web3Button } from "@thirdweb-dev/react";
-import { NFTDrop } from "@thirdweb-dev/sdk";
+import { NFTDrop, StandardErc721 } from "@thirdweb-dev/sdk";
 
 
 export default function Home() {
   const [amountToClaim, setAmountToClaim] = useState("");
-  const onAction = (contract: NFTDrop ) => {
-    console.log(contract)
+  const onAction = (contract: any ) => {
     return contract.claim(amountToClaim)
   }
 
