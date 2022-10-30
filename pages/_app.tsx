@@ -1,6 +1,7 @@
 import type { AppProps } from "next/app";
 import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
 import "src/styles/global.css";
+import { Layout } from "src/components/layouts/layouts";
 // This is the chainId your dApp will work on.
 const activeChainId = ChainId.Mainnet;
 
@@ -14,7 +15,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         loginRedirect: "/",
       }}
     >
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </ThirdwebProvider>
   );
 }
