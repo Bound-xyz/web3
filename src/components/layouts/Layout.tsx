@@ -1,7 +1,9 @@
 import { ReactNode } from "react";
+import { Nav } from "./Navigation";
 
 export const Layout = ({ children }: { children: ReactNode }) => (
   <>
-    <div>{children}</div>
+    <Nav activeMenu={undefined} />
+    <main>{children}</main>
   </>
 );
