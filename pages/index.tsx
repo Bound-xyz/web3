@@ -12,7 +12,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   const { user } = useUser();
 
   return (
-    <div className="">
+    <div className="min-h-screen">
       {address ? (
         <>
           <p>Your address: {address}</p>
@@ -26,7 +26,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           これまでのスキルを活かせる新しいプロジェクトに参加してみよう！
         </p>
 
-        <div className="mt-10 flex">
+        <div className="mt-10 flex gap-6 overflow-auto">
           {projects.data?.length
             ? projects.data.map((project) => <ProjectCard project={project} />)
             : null}
