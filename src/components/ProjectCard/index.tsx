@@ -8,7 +8,7 @@ type Props = {
 };
 
 export const ProjectCard = ({ project }: Props) => (
-  <div className="flex flex-col p-4 shadow w-80 h-96 rounded-lg">
+  <div className="flex flex-col p-4 shadow bg-white w-80 h-96 rounded-lg">
     <div className="relative w-full h-24">
       <Image
         src={project.thumbnail_uri}
