@@ -11,6 +11,31 @@ contract Storage {
 
     uint256 number;
 
+    struct Student {
+        uint userId;
+        string userName;
+        address userAddress;
+        string career;
+        uint[] projectId;
+    }
+
+    struct Company {
+        uint companyId;
+        string companyName;
+        address companyAddress;
+        uint[] projectId;
+    }
+
+     struct Project {
+        uint projectId;
+        string pdojectName;
+        string experience;
+        string projectPeriod;
+        string[] skill;
+        uint[] studentId;
+        uint[] companyId;
+    }
+
     /**
      * @dev Store value in variable
      * @param num value to store
