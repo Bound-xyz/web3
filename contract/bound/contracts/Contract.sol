@@ -1,29 +1,38 @@
-// SPDX-License-Identifier: GPL-3.0
+// contracts/BadgeToken.sol
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
-pragma solidity >=0.7.0 <0.9.0;
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 
-/**
- * @title Storage
- * @dev Store & retrieve value in a variable
- * @custom:dev-run-script ./scripts/deploy_with_ethers.ts
- */
-contract Storage {
+import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/utils/Context.sol";
 
-    uint256 number;
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-    /**
-     * @dev Store value in variable
-     * @param num value to store
-     */
-    function store(uint256 num) public {
-        number = num;
+
+
+
+contract Bound is ERC721Base {
+     struct Project {
+        string userName;
+
+        string rewards;
+
+        string projectName;
+        string experience;
+        string projectPeriod;
+        string skill;
     }
 
-    /**
-     * @dev Return value 
-     * @return value of 'number'
-     */
-    function retrieve() public view returns (uint256){
-        return number;
+    string public baseURI;
+    Project public project;
+
+    constructor(Project memory _project, string memory _baseURI) ERC721Base("Bound", "BND"){
+        project = _project;
+        baseURI = _baseURI;
     }
+
 }
+
+// {"userName": "testname","rewards": "10eth", "projectName": "testproject", "experience": "testexperience", "projectPeriod": "10", "skill": "スキル"}
