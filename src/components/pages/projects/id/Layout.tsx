@@ -95,6 +95,7 @@ export const ProjectPageLayout = ({ project, ...props }: Props) => {
               <div>TYPE</div>
               <div className="font-semibold">Project SBT</div>
             </div>
+            {/* TODO: ProgressBarの作成 */}
 
             <div className="mt-8">
               <Button onClick={props.onClickSubmit}>
