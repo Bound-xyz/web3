@@ -1,56 +1,36 @@
 import React, { useState } from "react";
-import { NFTDrop, StandardErc721 } from "@thirdweb-dev/sdk";
-import { ConnectWallet, useAddress, useContract, useDisconnect, useMetamask, useNFTs,useMintNFT, useNetworkMismatch, useNetwork,Web3Button } from "@thirdweb-dev/react";
-
+import { Web3Button } from "@thirdweb-dev/react";
+import { ThirdwebStorage } from "@thirdweb-dev/storage";
+import { mint } from "../api/mint";
 
 export default function Home() {
   const [amountToClaim, setAmountToClaim] = useState("");
-  const onAction = (contract: any ) => {
-    console.log(contract)
-    return contract.claim(amountToClaim)
-  }
 
-  const { contract } = useContract(
-    "0x06E73B0C223fbf985a003d11FCC4CE64840C3c8C"
-  );
+  // First, instantiate the SDK
+  const storage = new ThirdwebStorage();
 
+  // We define metadata for an NFT
+  const [description, setDiscription] = useState({
+    credentialId: "NFT #1",
+    description: "This is my first NFT",
+    toAddress: "path/to/file.jpg",
+    imageURIs: "",
+    externalURIs: "",
+  });
+  const [imageUri, setImageURI] = useState("");
 
+  const _to = "0x6727c42065F65Efb02de3b4fCe71f8F5520596a1";
+  const _externalURI = "test";
   return (
-    <div >
-      <h2>Claim Tokens</h2>
-      <p >
-        Claim ERC20 tokens from the prebuilt{" "}
-        <a
-          
-          href="https://portal.thirdweb.com/pre-built-contracts/token-drop"
-          target="_blank"
-          rel="noreferrer"
-        >
-          token drop
-        </a>{" "}
-        contract.
-      </p>
-
-      <hr  />
-
-      <div >
-        <input
-          type="text"
-          placeholder="Enter amount to claim"
-          onChange={(e) => setAmountToClaim(e.target.value)}
-          
-        />
-        <Web3Button
-          accentColor="#5204BF"
-          colorMode="dark"
-          contractAddress="0xb0c2F6b498fc2F9503eC38e2f502eFF905B596Ed"
-          action={onAction}
-          onSuccess={() => alert("Claimed!")}
-          onError={(err) => alert(err)}
-        >
-          Claim Tokens
-        </Web3Button>
-      </div>
+    <div>
+      <Web3Button
+        contractAddress="0x583Da11bFE498C6E5E93289D93948CDe31ce9f61"
+        action={(contract) => {
+          mint;
+        }}
+      >
+        mintAndTransfer
+      </Web3Button>
     </div>
   );
 }
