@@ -13,7 +13,9 @@ interface Params extends ParsedUrlQuery {
 export default (props: Props) => (
   <ProjectPageLayout
     companyLogoUrl={props.project.thumbnail_uri}
-    submitButtonLabel={undefined}
+    // TODO ステータスに応じて変動させる
+    // hooksの作成も
+    submitButtonLabel="APPLY👋"
     onClickSubmit={function (): void {
       throw new Error("Function not implemented.");
     }}
