@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
-import { supabase } from "pages/api/auth/[...thirdweb]";
 import { ParsedUrlQuery } from "querystring";
 import { ProjectPageLayout } from "src/components/pages/projects/id/Layout";
+import { supabase } from "src/libs/supabase/client";
 import { Database } from "src/types/supabase";
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;

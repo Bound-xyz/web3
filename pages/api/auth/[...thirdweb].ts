@@ -1,10 +1,5 @@
 import { ThirdwebAuth } from "@thirdweb-dev/auth/next";
-import { createClient } from "@supabase/supabase-js";
-
-export const supabase = createClient(
-  process.env.SUPABASE_URL || "",
-  process.env.SUPABASE_SERVICE_ROLE || ""
-);
+import { supabase } from "src/libs/supabase/client";
 
 export const { ThirdwebAuthHandler, getUser } = ThirdwebAuth({
   privateKey: process.env.ADMIN_PRIVATE_KEY || "",
