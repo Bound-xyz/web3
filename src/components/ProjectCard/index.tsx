@@ -24,8 +24,7 @@ export const ProjectCard = ({ project }: Props) => (
       {format(new Date(project.end_date), "yyyy-MM-dd")}
     </div>
     <h3 className="mt-4 text-xl">{project.name}</h3>
-    {/* TODO hrefの修正 */}
-    <Link href={`${project.id}`} passHref>
+    <Link href={`projects/${project.id}`} passHref>
       <a className="mt-4">View More</a>
     </Link>
   </div>
