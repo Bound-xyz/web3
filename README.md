@@ -54,4 +54,4 @@ You can check out [the thirdweb GitHub organization](https://github.com/thirdweb
 
 ## Join our Discord!
 
-For any questions, suggestions, join our discord at [Bound.xyz Discord Channel](https://discord.gg/UwHfbbbY)).
+For any questions, suggestions, join our discord at [Bound.xyz Discord Channel](https://discord.gg/UwHfbbbY).
