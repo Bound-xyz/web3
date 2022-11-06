@@ -20,14 +20,28 @@ const handlePost = z.object({
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async (req: NextApiRequest, res: NextApiResponse<Res>) => {
-  console.log(req.body);
+  const request = handlePost.safeParse(JSON.parse(req.body));
 
-  const request = handlePost.safeParse(req.body);
   if (!request.success) {
     console.error(request.error);
 
     res.status(400).json({
       error: `Invalid Request`,
+    });
+    return;
+  }
+
+  const isExist = await supabase
+    .from("project_members")
+    .select("*", { count: "exact" })
+    .match({
+      user_id: request.data.userID,
+      project_id: request.data.projectID,
+    });
+
+  if (isExist.count == null || isExist.count > 0) {
+    res.status(409).json({
+      name: "Already exists",
     });
     return;
   }
