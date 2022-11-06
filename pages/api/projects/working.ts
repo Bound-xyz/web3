@@ -20,8 +20,6 @@ const handlePost = z.object({
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async (req: NextApiRequest, res: NextApiResponse<Res>) => {
-  console.log(req.body);
-
   const request = handlePost.safeParse(req.body);
   if (!request.success) {
     console.error(request.error);
@@ -33,11 +31,13 @@ export default async (req: NextApiRequest, res: NextApiResponse<Res>) => {
   }
 
   // supabase
-  const result = await supabase.from("project_members").insert({
-    user_id: request.data.userID,
-    project_id: request.data.projectID,
-    status: "APPLICATION_REVIEW",
-  });
+  const result = await supabase
+    .from("project_members")
+    .update({
+      status: "WORKING",
+    })
+    .eq("user_id", request.data.userID)
+    .eq("project_id", request.data.projectID);
 
   if (result.error) {
     console.error(result.error);
@@ -49,6 +49,6 @@ export default async (req: NextApiRequest, res: NextApiResponse<Res>) => {
   }
 
   res.status(201).json({
-    name: "Successfully applied",
+    name: "Successfully changed status to WORKING",
   });
 };
