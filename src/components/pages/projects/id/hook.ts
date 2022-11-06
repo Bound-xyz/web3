@@ -1,18 +1,98 @@
+import { useUser } from "@thirdweb-dev/react";
 import { useCallback, useEffect, useState } from "react";
+import { applyProject, changeStatus } from "src/components/API/service/project";
+import { supabase } from "src/libs/supabase/client";
 import { ProjectStatus, PROJECT_STATUS } from "src/types/Status";
 import { Database } from "src/types/supabase";
 
 type Props = {
   project: Database["public"]["Tables"]["projects"]["Row"];
-  currentStatus: ProjectStatus | null;
 };
 
 export const useProjectPageLayout = (props: Props) => {
   const [submitButtonLabel, setSubmitButtonLabel] = useState<string>("");
+  const { user } = useUser();
+  const [currentStatus, setCurrentState] = useState<ProjectStatus | null>(null);
+  const [hasMinted, setHasMinted] = useState<boolean>(false);
 
-  const onClickSubmit = () => {
-    // TODO
-    console.debug(props.currentStatus);
+  const fetchCurrentStatus = useCallback(
+    async (userID: string) => {
+      const res = await supabase
+        .from("project_members")
+        .select("id,status")
+        .match({
+          user_id: userID,
+          project_id: props.project.id,
+        })
+        .single();
+
+      if (res.error || !res.data) return setCurrentState(null);
+
+      setCurrentState(res.data.status as ProjectStatus);
+    },
+    [props.project.id]
+  );
+
+  useEffect(() => {
+    const u = user as {
+      id: string;
+      address: string;
+    };
+    if (u.id) {
+      fetchCurrentStatus(u.id);
+    }
+  }, [fetchCurrentStatus, user]);
+
+  const onClickSubmit = async () => {
+    if (!user) {
+      alert("ログインしてください！");
+      return;
+    }
+    const us = user as { id: string; address: string };
+
+    let res;
+    switch (currentStatus) {
+      case null:
+        res = await applyProject(us.id, props.project.id);
+        break;
+      case PROJECT_STATUS.APPLICATION_REVIEW:
+        res = await changeStatus(
+          us.id,
+          props.project.id,
+          PROJECT_STATUS.WORKING
+        );
+        break;
+      case PROJECT_STATUS.WORKING:
+        res = await changeStatus(
+          us.id,
+          props.project.id,
+          PROJECT_STATUS.SUBMISSION_REVIEW
+        );
+        break;
+      case PROJECT_STATUS.SUBMISSION_REVIEW:
+        res = await changeStatus(
+          us.id,
+          props.project.id,
+          PROJECT_STATUS.COMPLETE
+        );
+        break;
+    }
+
+    if (res) {
+      switch (currentStatus) {
+        case null:
+          setCurrentState(PROJECT_STATUS.APPLICATION_REVIEW);
+          break;
+        case "APPLICATION_REVIEW":
+          setCurrentState(PROJECT_STATUS.WORKING);
+          break;
+        case "SUBMISSION_REVIEW":
+          setCurrentState(PROJECT_STATUS.COMPLETE);
+          break;
+      }
+    } else {
+      alert("失敗しました");
+    }
   };
   const onCLickJoinCommunity = () => {
     console.debug("Clicked Join Community");
@@ -23,10 +103,7 @@ export const useProjectPageLayout = (props: Props) => {
 
   const nameSubmitButtonLabel = useCallback(() => {
     let label = "";
-    switch (props.currentStatus) {
-      case null:
-        label = "APPLY👋";
-        break;
+    switch (currentStatus) {
       case PROJECT_STATUS.APPLICATION_REVIEW:
         label = "APPLICATION_REVIEW";
         break;
@@ -38,16 +115,17 @@ export const useProjectPageLayout = (props: Props) => {
         break;
       case PROJECT_STATUS.COMPLETE:
         // この中でミントしたかで別れる
-        label = "MINT";
-        label = "MINTED🎉";
+        label = hasMinted ? "MINTED🎉" : "READY TO MINT🌿";
         break;
+      default:
+        label = "APPLY👋";
     }
     setSubmitButtonLabel(label);
-  }, [props.currentStatus]);
+  }, [currentStatus, hasMinted]);
 
   useEffect(() => {
     nameSubmitButtonLabel();
-  }, [props.currentStatus, nameSubmitButtonLabel]);
+  }, [currentStatus, nameSubmitButtonLabel]);
 
   return {
     submitButtonLabel,
