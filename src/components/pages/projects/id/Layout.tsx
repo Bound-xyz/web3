@@ -63,7 +63,9 @@ export const ProjectPageLayout = ({ project, ...props }: Props) => {
           <h2 className="mt-8 font-semibold text-4xl">Required Skill</h2>
           <ul className="mt-4 list-disc list-inside">
             {project.requirements.map((req) => (
-              <li className="text-lg">{req}</li>
+              <li className="text-lg" key={req}>
+                {req}
+              </li>
             ))}
           </ul>
 
@@ -78,7 +80,9 @@ export const ProjectPageLayout = ({ project, ...props }: Props) => {
 
           <ul className="mt-4 list-disc list-inside">
             {project.utilities.map((util) => (
-              <li className="text-lg">{util}</li>
+              <li className="text-lg" key={util}>
+                {util}
+              </li>
             ))}
           </ul>
         </div>
