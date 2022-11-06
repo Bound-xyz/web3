@@ -8,6 +8,13 @@
 
 既存のWantedlyなどのジョブプラットフォームと違い、Boundでは自身のウォレットによるスキル証明、スマートコントラクトによる企業との契約、報酬付与によって国境を越えて多くの企業のジョブへのアクセスが可能となる。そこでの実績がオンチェーン上に保存され自身のスキル証明とWeb3ライクなキャリア育成を可能にする。
 
+## Product
+### プロダクトのデプロイ先URL
+https://web3-blond-delta.vercel.app/
+
+### Thirdweb上でMintできたか確認する。
+https://thirdweb.com/mumbai/0x583Da11bFE498C6E5E93289D93948CDe31ce9f61/events
+
 ## Getting Started
 
 
