@@ -20,7 +20,7 @@ const handlePost = z.object({
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async (req: NextApiRequest, res: NextApiResponse<Res>) => {
-  const request = handlePost.safeParse(req.body);
+  const request = handlePost.safeParse(JSON.parse(req.body));
   if (!request.success) {
     console.error(request.error);
 
