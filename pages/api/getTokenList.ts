@@ -1,10 +1,10 @@
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 
-interface getNFTListProps {
+interface getTokenListProps {
   ownerAddress: string;
 }
 
-export const getNFTList = async (props: getNFTListProps) => {
+export const getTokenList = async (props: getTokenListProps) => {
   const { ownerAddress } = props;
   const sdk = await ThirdwebSDK.fromPrivateKey(
     // Boundのウォレットのプライベートキー
@@ -16,6 +16,6 @@ export const getNFTList = async (props: getNFTListProps) => {
     process.env.NEXT_PUBLIC_CONTRACT_ADDRESS || ""
   );
 
-  const nftList = await contract.call("owenedNFTs", ownerAddress);
+  const nftList = await contract.call("ownedNFTs", ownerAddress);
   return nftList;
 };

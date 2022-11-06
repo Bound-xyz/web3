@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ThirdwebStorage } from "@thirdweb-dev/storage";
-import { mint } from "pages/api/mint";
+import { getTokenURI } from "pages/api/getTokenURI";
+import { getTokenList } from "pages/api/getTokenList";
 import { useAddress } from "@thirdweb-dev/react";
 
 export default function Home() {
@@ -22,10 +23,13 @@ export default function Home() {
   const _to = address || "";
   const _externalURI = "nakayama";
 
+  const onClick = () =>
+    fetch("http://localhost:3000/api/mint", {
+      method: "post",
+      body: JSON.stringify({ toAddress: _to, externalURI: _externalURI }),
+    });
+
   // mintの実行
-  const onClick = () => {
-    mint({ toAddress: _to, externalURI: _externalURI });
-  };
   return (
     <div>
       <button onClick={onClick}>mintAndTransfer</button>

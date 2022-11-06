@@ -43,7 +43,6 @@ export const getStaticProps: GetStaticProps<{
   if (projects.error) {
     console.error(projects.error);
   }
-
   return {
     props: {
       projects: projects,
@@ -51,5 +50,12 @@ export const getStaticProps: GetStaticProps<{
     redirect: 60 * 60,
   };
 };
+
+// export const getThirdwebProps: GetStaticProps = async () => {
+//   const _sdk = await sdk;
+//   return {
+//     props: { sdk: _sdk },
+//   };
+// };
 
 export default Home;

@@ -1,21 +1,23 @@
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
+import type { NextApiRequest, NextApiResponse } from "next";
+import { sdk } from "../../src/libs/thirdweb/sdk";
 
-interface mintProps {
-  toAddress: string;
-  externalURI: string;
-}
+import { envs } from "src/configs/env/env";
+import { GetStaticProps } from "next";
 
-export const mint = async (props: mintProps) => {
-  const { toAddress, externalURI } = props;
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+  const { toAddress, externalURI } = req.body;
+  console.log("test");
+
   const sdk = await ThirdwebSDK.fromPrivateKey(
     // Boundのウォレットのプライベートキー
-    // process.env.ADMIN_PRIVATE_KEY || "",
-    "6c13bfe769dea90a2eeab7d480118a584e02e96e9f0aca7e57bee8a21b4dc474",
+    process.env.ADMIN_PRIVATE_KEY || "",
     "mumbai" // configure this to your network
   );
+
   const contract = await sdk.getContract(
     process.env.NEXT_PUBLIC_CONTRACT_ADDRESS || ""
   );
 
-  await contract.call("mintAndTransfer", toAddress, externalURI);
+  contract.call("mintAndTransfer", toAddress, externalURI);
 };
