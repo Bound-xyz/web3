@@ -1,9 +1,5 @@
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { sdk } from "../../src/libs/thirdweb/sdk";
-
-import { envs } from "src/configs/env/env";
-import { GetStaticProps } from "next";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { toAddress, externalURI } = req.body;
