@@ -2,6 +2,7 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { ConnectWallet } from "@thirdweb-dev/react";
 import Image from "next/image";
+import Link from "next/link";
 import { Fragment } from "react";
 import { NavigationMenus, navigationMenus } from "./const";
 
@@ -33,21 +34,23 @@ export const Nav = (props: Props) => {
                   </Disclosure.Button>
                 </div>
                 <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                  <div className="flex flex-shrink-0 items-center">
-                    <img
-                      className="block h-8 w-auto lg:hidden"
-                      src="/bound-logo/logo.png"
-                      alt="Bound Logo"
-                    />
-                    <img
-                      className="hidden h-12 w-auto lg:block"
-                      src="/bound-logo/logo.png"
-                      alt="Bound Logo"
-                    />
-                    <div className="ml-2 font-bold text-xl sm:block hidden">
-                      Bound.xyz
+                  <Link passHref href="/">
+                    <div className="flex flex-shrink-0 items-center">
+                      <img
+                        className="block h-8 w-auto lg:hidden"
+                        src="/bound-logo/logo.png"
+                        alt="Bound Logo"
+                      />
+                      <img
+                        className="hidden h-12 w-auto lg:block"
+                        src="/bound-logo/logo.png"
+                        alt="Bound Logo"
+                      />
+                      <div className="ml-2 font-bold text-xl sm:block hidden">
+                        Bound.xyz
+                      </div>
                     </div>
-                  </div>
+                  </Link>
 
                   <div className="hidden sm:ml-6 sm:flex items-center">
                     <div className="flex space-x-4">
