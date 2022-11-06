@@ -15,7 +15,7 @@ const Page = (props: Props) => (
   <ProjectPageLayout
     project={props.project}
     companyLogoUrl={props.project.thumbnail_uri}
-    {...useProjectPageLayout({ project: props.project, currentStatus: null })}
+    {...useProjectPageLayout({ project: props.project })}
   />
 );
 export default Page;
