@@ -48,5 +48,5 @@ export default async (req: NextApiRequest, res: NextApiResponse<Res>) => {
     return;
   }
 
-  res.status(200).json({ name: "John Doe" });
+  res.status(200);
 };
