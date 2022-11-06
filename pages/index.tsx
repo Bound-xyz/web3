@@ -49,7 +49,7 @@ export const getStaticProps: GetStaticProps<{
     props: {
       projects: projects,
     },
-    redirect: 60 * 60,
+    revalidate: 60 * 60,
   };
 };
 
