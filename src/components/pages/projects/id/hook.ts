@@ -1,4 +1,5 @@
 import { useUser } from "@thirdweb-dev/react";
+import { mint } from "src/components/API/service/nft";
 import { useCallback, useEffect, useState } from "react";
 import { applyProject, changeStatus } from "src/components/API/service/project";
 import { supabase } from "src/libs/supabase/client";
@@ -38,7 +39,7 @@ export const useProjectPageLayout = (props: Props) => {
       id: string;
       address: string;
     };
-    if (u.id) {
+    if (u && u.id) {
       fetchCurrentStatus(u.id);
     }
   }, [fetchCurrentStatus, user]);
@@ -48,33 +49,36 @@ export const useProjectPageLayout = (props: Props) => {
       alert("ログインしてください！");
       return;
     }
-    const us = user as { id: string; address: string };
+    const u = user as { id: string; address: string };
 
     let res;
     switch (currentStatus) {
       case null:
-        res = await applyProject(us.id, props.project.id);
+        res = await applyProject(u.id, props.project.id);
         break;
       case PROJECT_STATUS.APPLICATION_REVIEW:
         res = await changeStatus(
-          us.id,
+          u.id,
           props.project.id,
           PROJECT_STATUS.WORKING
         );
         break;
       case PROJECT_STATUS.WORKING:
         res = await changeStatus(
-          us.id,
+          u.id,
           props.project.id,
           PROJECT_STATUS.SUBMISSION_REVIEW
         );
         break;
       case PROJECT_STATUS.SUBMISSION_REVIEW:
         res = await changeStatus(
-          us.id,
+          u.id,
           props.project.id,
           PROJECT_STATUS.COMPLETE
         );
+        break;
+      case PROJECT_STATUS.COMPLETE:
+        res = await mint(u.address);
         break;
     }
 
