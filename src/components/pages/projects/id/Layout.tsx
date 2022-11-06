@@ -26,7 +26,7 @@ export const ProjectPageLayout = ({ project, ...props }: Props) => {
               style={{ objectFit: "contain" }}
             />
           </div>
-          <h1 className="font-bold text-3xl">{project.name}</h1>
+          <h1 className="mt-3 font-bold text-3xl">{project.name}</h1>
           <div className="mt-3 tracking-widest">
             {project.start_date} <span className="mx-1">-</span>
             {project.end_date}
