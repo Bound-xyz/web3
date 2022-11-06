@@ -10,7 +10,7 @@
 
 
 ## How to experience our product
-- First please watch [Our Vision Demo](https://drive.google.com/file/d/1qFzZYMnEd674JBAAv4ivT86tnad0c0A1/view?usp=sharing)🎥
+- First please watch [Our Vision Demo](https://drive.google.com/file/d/1qFzZYMnEd674JBAAv4ivT86tnad0c0A1/view?usp=sharing) 🎥
 - Access to [Product URL](https://web3-blond-delta.vercel.app/) 🧑‍💻
 - Login with your own wallet and go to a project page
 - Apply a project and Mint NFT. After Status botton Changed to "Minted", your transaction successfully completed.
