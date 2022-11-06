@@ -8,18 +8,8 @@ import { Database } from "src/types/supabase";
 const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   projects,
 }) => {
-  const address = useAddress();
-  const { user } = useUser();
-
   return (
     <div className="min-h-screen">
-      {address ? (
-        <>
-          <p>Your address: {address}</p>
-          <pre>User: {JSON.stringify(user || null, undefined, 2)}</pre>
-        </>
-      ) : null}
-
       <div className="p-10">
         <h2 className="font-bold text-3xl text-center">Projects</h2>
         <p className="mt-4 text-center textlg">
