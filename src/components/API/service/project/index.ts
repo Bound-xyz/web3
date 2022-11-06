@@ -7,9 +7,10 @@ export const applyProject = async (userID: string, projectID: string) => {
     }),
   });
 
-  if (res.ok) {
-    return res.body;
+  if (res.status == 201) {
+    return true;
   }
+  return false;
 };
 
 // 管理アプリに本来はあるAPI
@@ -25,9 +26,9 @@ export const changeStatus = async (
       projectID: projectID,
     }),
   });
-  console.log(res);
 
-  if (res.ok) {
-    return res.body;
+  if (res.status === 201) {
+    return true;
   }
+  return false;
 };
