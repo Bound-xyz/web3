@@ -26,7 +26,7 @@ export const { ThirdwebAuthHandler, getUser } = ThirdwebAuth({
     user: async (address: string) => {
       const { data: user } = await supabase
         .from("users")
-        .select("*")
+        .select("id")
         .eq("wallet_address", address.toLowerCase())
         .single();
 
