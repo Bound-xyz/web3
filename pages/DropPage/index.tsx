@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Web3Button } from "@thirdweb-dev/react";
 import { ThirdwebStorage } from "@thirdweb-dev/storage";
-import { mint } from "../api/mint";
+import { mint } from "pages/api/mint";
+import { useAddress } from "@thirdweb-dev/react";
 
 export default function Home() {
-  const [amountToClaim, setAmountToClaim] = useState("");
+  // ログイン中のwallet addressを取得
+  const address = useAddress();
 
   // First, instantiate the SDK
   const storage = new ThirdwebStorage();
@@ -17,20 +18,17 @@ export default function Home() {
     imageURIs: "",
     externalURIs: "",
   });
-  const [imageUri, setImageURI] = useState("");
 
-  const _to = "0x6727c42065F65Efb02de3b4fCe71f8F5520596a1";
-  const _externalURI = "test";
+  const _to = address || "";
+  const _externalURI = "nakayama";
+
+  // mintの実行
+  const onClick = () => {
+    mint({ toAddress: _to, externalURI: _externalURI });
+  };
   return (
     <div>
-      <Web3Button
-        contractAddress="0x583Da11bFE498C6E5E93289D93948CDe31ce9f61"
-        action={(contract) => {
-          mint;
-        }}
-      >
-        mintAndTransfer
-      </Web3Button>
+      <button onClick={onClick}>mintAndTransfer</button>
     </div>
   );
 }

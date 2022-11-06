@@ -1,12 +1,11 @@
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 
-interface mintProps {
-  toAddress: string;
-  externalURI: string;
+interface getTokenURIProps {
+  tokenId: string;
 }
 
-export const mint = async (props: mintProps) => {
-  const { toAddress, externalURI } = props;
+export const getTokenURI = async (props: getTokenURIProps) => {
+  const { tokenId } = props;
   const sdk = await ThirdwebSDK.fromPrivateKey(
     // Boundのウォレットのプライベートキー
     // process.env.ADMIN_PRIVATE_KEY || "",
@@ -17,5 +16,6 @@ export const mint = async (props: mintProps) => {
     process.env.NEXT_PUBLIC_CONTRACT_ADDRESS || ""
   );
 
-  await contract.call("mintAndTransfer", toAddress, externalURI);
+  const uri = await contract.call("owenedNFTs", tokenId);
+  return uri;
 };
