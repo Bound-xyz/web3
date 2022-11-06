@@ -8,13 +8,18 @@
 
 既存のWantedlyなどのジョブプラットフォームと違い、Boundでは自身のウォレットによるスキル証明、スマートコントラクトによる企業との契約、報酬付与によって国境を越えて多くの企業のジョブへのアクセスが可能となる。そこでの実績がオンチェーン上に保存され自身のスキル証明とWeb3ライクなキャリア育成を可能にする。
 
-Check [Our Vision Demo](https://drive.google.com/file/d/1qFzZYMnEd674JBAAv4ivT86tnad0c0A1/view?usp=sharing)!!
 
-## How to experience our currrent prototype
+## How to experience our product
+- Check [Our Vision Demo](https://drive.google.com/file/d/1qFzZYMnEd674JBAAv4ivT86tnad0c0A1/view?usp=sharing)
 - Access to [Product URL](https://web3-blond-delta.vercel.app/) 
 - Login with your own wallet and go to a project page
 - Apply a project and Mint NFT. After Status botton Changed to "Minted", your transaction successfully completed.
 - Check your own your transaction in [Thirdweb Dashboard](https://thirdweb.com/mumbai/0x583Da11bFE498C6E5E93289D93948CDe31ce9f61/events)
+
+## Join our Discord!
+
+For any questions, suggestions, join our discord at [Bound.xyz Discord Channel](https://discord.gg/UwHfbbbY).
+
 
 ## Getting Started
 
@@ -54,7 +59,3 @@ To learn more about thirdweb, take a look at the following resources:
 - [thirdweb Portal](https://docs.thirdweb.com) - check our guides and development resources.
 
 You can check out [the thirdweb GitHub organization](https://github.com/thirdweb-dev) - your feedback and contributions are welcome!
-
-## Join our Discord!
-
-For any questions, suggestions, join our discord at [Bound.xyz Discord Channel](https://discord.gg/UwHfbbbY).
