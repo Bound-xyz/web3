@@ -28,7 +28,9 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 
         <div className="mt-10 flex gap-6 overflow-auto">
           {projects.data?.length
-            ? projects.data.map((project) => <ProjectCard project={project} />)
+            ? projects.data.map((project) => (
+                <ProjectCard key={project.id} project={project} />
+              ))
             : null}
         </div>
       </div>
