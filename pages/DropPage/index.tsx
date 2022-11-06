@@ -1,56 +1,38 @@
 import React, { useState } from "react";
-import { NFTDrop, StandardErc721 } from "@thirdweb-dev/sdk";
-import { ConnectWallet, useAddress, useContract, useDisconnect, useMetamask, useNFTs,useMintNFT, useNetworkMismatch, useNetwork,Web3Button } from "@thirdweb-dev/react";
-
+import { ThirdwebStorage } from "@thirdweb-dev/storage";
+import { getTokenURI } from "pages/api/getTokenURI";
+import { getTokenList } from "pages/api/getTokenList";
+import { useAddress } from "@thirdweb-dev/react";
 
 export default function Home() {
-  const [amountToClaim, setAmountToClaim] = useState("");
-  const onAction = (contract: any ) => {
-    console.log(contract)
-    return contract.claim(amountToClaim)
-  }
+  // ログイン中のwallet addressを取得
+  const address = useAddress();
 
-  const { contract } = useContract(
-    "0x06E73B0C223fbf985a003d11FCC4CE64840C3c8C"
-  );
+  // First, instantiate the SDK
+  const storage = new ThirdwebStorage();
 
+  // We define metadata for an NFT
+  const [description, setDiscription] = useState({
+    credentialId: "NFT #1",
+    description: "This is my first NFT",
+    toAddress: "path/to/file.jpg",
+    imageURIs: "",
+    externalURIs: "",
+  });
 
+  const _to = address || "";
+  const _externalURI = "nakayama";
+
+  const onClick = () =>
+    fetch("http://localhost:3000/api/mint", {
+      method: "post",
+      body: JSON.stringify({ toAddress: _to, externalURI: _externalURI }),
+    });
+
+  // mintの実行
   return (
-    <div >
-      <h2>Claim Tokens</h2>
-      <p >
-        Claim ERC20 tokens from the prebuilt{" "}
-        <a
-          
-          href="https://portal.thirdweb.com/pre-built-contracts/token-drop"
-          target="_blank"
-          rel="noreferrer"
-        >
-          token drop
-        </a>{" "}
-        contract.
-      </p>
-
-      <hr  />
-
-      <div >
-        <input
-          type="text"
-          placeholder="Enter amount to claim"
-          onChange={(e) => setAmountToClaim(e.target.value)}
-          
-        />
-        <Web3Button
-          accentColor="#5204BF"
-          colorMode="dark"
-          contractAddress="0xb0c2F6b498fc2F9503eC38e2f502eFF905B596Ed"
-          action={onAction}
-          onSuccess={() => alert("Claimed!")}
-          onError={(err) => alert(err)}
-        >
-          Claim Tokens
-        </Web3Button>
-      </div>
+    <div>
+      <button onClick={onClick}>mintAndTransfer</button>
     </div>
   );
 }
