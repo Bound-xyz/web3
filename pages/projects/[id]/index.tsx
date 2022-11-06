@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import { ParsedUrlQuery } from "querystring";
+import { useProjectPageLayout } from "src/components/pages/projects/id/hook";
 import { ProjectPageLayout } from "src/components/pages/projects/id/Layout";
 import { supabase } from "src/libs/supabase/client";
 import { Database } from "src/types/supabase";
@@ -10,24 +11,14 @@ interface Params extends ParsedUrlQuery {
   id: string;
 }
 
-export default (props: Props) => (
+const Page = (props: Props) => (
   <ProjectPageLayout
+    project={props.project}
     companyLogoUrl={props.project.thumbnail_uri}
-    // TODO ステータスに応じて変動させる
-    // hooksの作成も
-    submitButtonLabel="APPLY👋"
-    onClickSubmit={function (): void {
-      throw new Error("Function not implemented.");
-    }}
-    onCLickJoinCommunity={function (): void {
-      throw new Error("Function not implemented.");
-    }}
-    onClickFollow={function (): void {
-      throw new Error("Function not implemented.");
-    }}
-    {...props}
+    {...useProjectPageLayout({ project: props.project, currentStatus: null })}
   />
 );
+export default Page;
 
 type Response = {
   project: Database["public"]["Tables"]["projects"]["Row"];
