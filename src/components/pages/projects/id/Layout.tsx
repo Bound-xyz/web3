@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/future/image";
 import { ReactNode } from "react";
 import { Button } from "src/components/Button";
 import { Database } from "src/types/supabase";
@@ -18,12 +18,12 @@ export const ProjectPageLayout = ({ project, ...props }: Props) => {
     <div>
       <div className="p-16 sm:grid grid-cols-2 gap-x-10 bg-[url('/project/hero-background.svg')]">
         <div>
-          <div className="h-[30px] relative flex justify-start">
+          <div className="h-[40px] w-[120px] relative flex justify-start">
             <Image
-              layout="fill"
-              objectFit="contain"
+              fill
               src={props.companyLogoUrl}
               alt="company logo"
+              style={{ objectFit: "contain" }}
             />
           </div>
           <h1 className="font-bold text-3xl">{project.name}</h1>
