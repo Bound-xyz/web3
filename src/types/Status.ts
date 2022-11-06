@@ -3,6 +3,6 @@ export const PROJECT_STATUS = {
   WORKING: "WORKING",
   SUBMISSION_REVIEW: "SUBMISSION_REVIEW",
   COMPLETE: "COMPLETE",
-};
+} as const;
 
 export type ProjectStatus = keyof typeof PROJECT_STATUS;
