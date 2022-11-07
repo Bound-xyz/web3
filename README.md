@@ -8,6 +8,8 @@
 
 既存のWantedlyなどのジョブプラットフォームと違い、Boundでは自身のウォレットによるスキル証明、スマートコントラクトによる企業との契約、報酬付与によって国境を越えて多くの企業のジョブへのアクセスが可能となる。そこでの実績がオンチェーン上に保存され自身のスキル証明とWeb3ライクなキャリア育成を可能にする。
 
+Please visit our [Notion](https://www.notion.so/Bound-xyz-9bbaed21c45e410a9167103dcf7517a6) 🚀
+
 
 ## How to experience our product
 - First please watch [Our Vision Demo](https://drive.google.com/file/d/1qFzZYMnEd674JBAAv4ivT86tnad0c0A1/view?usp=sharing) 🎥
