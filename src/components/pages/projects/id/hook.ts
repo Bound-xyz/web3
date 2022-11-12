@@ -93,6 +93,8 @@ export const useProjectPageLayout = (props: Props) => {
         case "SUBMISSION_REVIEW":
           setCurrentState(PROJECT_STATUS.COMPLETE);
           break;
+        case "COMPLETE":
+          setHasMinted(true);
       }
     } else {
       alert("失敗しました");

@@ -4,9 +4,7 @@ export const mint = async (toAddress: string) => {
     body: JSON.stringify({ toAddress, externalURI: "test" }),
   });
 
-  console.log(res);
-
-  if (res.status == 201) {
+  if (res.status == 200) {
     return true;
   }
   return false;
