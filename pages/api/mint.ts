@@ -1,9 +1,9 @@
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 import type { NextApiRequest, NextApiResponse } from "next";
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const { toAddress, externalURI } = req.body;
-  console.log("test");
+  const { toAddress, externalURI } = JSON.parse(req.body);
 
   const sdk = await ThirdwebSDK.fromPrivateKey(
     // Boundのウォレットのプライベートキー
@@ -15,5 +15,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     process.env.NEXT_PUBLIC_CONTRACT_ADDRESS || ""
   );
 
-  contract.call("mintAndTransfer", toAddress, externalURI);
+  const a = await contract.call(
+    "mintAndTransfer",
+    toAddress.trim(),
+    externalURI
+  );
+
+  res.status(200).json({});
 };
